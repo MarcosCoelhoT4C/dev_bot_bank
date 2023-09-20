@@ -1,0 +1,64 @@
+
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Função para obter o nome da pessoa usuária
+function getUserName() {
+  rl.question('Por favor, digite seu nome: ', (name) => {
+    console.log(`Olá, ${name}!`);
+    checkBusinessHours();
+  });
+}
+
+// Função para verificar o horário de atendimento
+function checkBusinessHours() {
+  const currentHour = new Date().getHours();
+
+  if (currentHour >= 9 && currentHour < 18) {
+    console.log('Estamos abertos. Você pode acessar nossos serviços.');
+    showMainMenu();
+  } else {
+    console.log('Desculpe, estamos fechados no momento. Nosso horário de atendimento é das 9h às 18h.');
+    rl.close();
+  }
+}
+
+// Função para mostrar o menu de opções
+function showMainMenu() {
+  console.log('Menu de Opções:');
+  console.log('1. Saldo');
+  console.log('2. Extrato');
+  console.log('3. Solicitar 2ª Via de Cartão');
+  console.log('4. Solicitar Empréstimo Consignado');
+  console.log('5. Sair');
+
+  rl.question('Por favor, escolha uma opção (1-5): ', (choice) => {
+    switch (choice) {
+      case '1':
+        // Lógica para verificar saldo
+        break;
+      case '2':
+        // Lógica para exibir extrato
+        break;
+      case '3':
+        // Lógica para solicitar 2ª via de cartão
+        break;
+      case '4':
+        // Lógica para solicitar empréstimo consignado
+        break;
+      case '5':
+        console.log('Obrigado por usar nossos serviços. Até mais!');
+        rl.close();
+        break;
+      default:
+        console.log('Opção inválida. Por favor, escolha uma opção válida.');
+        showMainMenu();
+    }
+  });
+}
+
+// Iniciar o processo
+getUserName();
